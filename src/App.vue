@@ -2,10 +2,12 @@
 import axios from "axios";
 import { store } from "./data/store";
 import Main from "./components/Main.vue";
+// import Paginator from "./components/partials/Paginator.vue";
 
 export default {
   components: {
     Main,
+    // Paginator,
   },
   data() {
     return {
@@ -19,7 +21,7 @@ export default {
         .get(store.apiUrl)
         .then((result) => {
           store.projects = result.data.data;
-          console.log(store.projects);
+          // console.log(result);
         })
         .catch((error) => {
           error = error.message;
@@ -35,6 +37,7 @@ export default {
 
 <template>
   <Main />
+  <!-- <Paginator @nextPage="getApi" /> -->
 </template>
 
 <style lang="scss">
