@@ -1,9 +1,7 @@
 <script>
 export default {
   props: {
-    title: String,
-    link: String,
-    desc: String,
+    project: Object,
   },
 };
 </script>
@@ -12,12 +10,17 @@ export default {
   <div class="col my-2 justify-content-center d-flex">
     <div class="card" style="width: 18rem; height: 25rem">
       <div class="card-body">
-        <h5 class="card-title">{{ title }}</h5>
+        <h5 class="card-title">
+          <router-link
+            :to="{ name: 'projectDetail', params: { slug: project.slug } }"
+            >{{ project.title }}</router-link
+          >
+        </h5>
         <!-- <h6 class="card-subtitle mb-2 text-body-secondary"></h6> -->
         <p class="card-text">
-          {{ desc }}
+          {{ project.desc }}
         </p>
-        <a :href="link" class="card-link">Link</a>
+        <a :href="project.link" class="card-link">Link</a>
       </div>
     </div>
   </div>

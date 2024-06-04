@@ -16,9 +16,9 @@ export default {
   },
 
   methods: {
-    getApi() {
+    getApi(apiUrl, type = "") {
       axios
-        .get(store.apiUrl)
+        .get(apiUrl + type)
         .then((result) => {
           store.projects = result.data.data;
           // console.log(result);
@@ -30,7 +30,7 @@ export default {
   },
 
   mounted() {
-    this.getApi();
+    this.getApi(store.apiUrl, "projects");
   },
 };
 </script>
@@ -41,9 +41,7 @@ export default {
       <ProjectCard
         v-for="project in store.projects"
         :key="project.id"
-        :title="project.title"
-        :link="project.link"
-        :desc="project.desc"
+        :project="project"
       />
     </div>
   </div>
